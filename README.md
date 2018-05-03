@@ -24,7 +24,7 @@ server <- function(input, output, session) {
     
     xtext <- paste(input$num, "is a prime number.")
     j <- 0
-    if (input$num <= 100000000) {
+    if (input$num <= 500000) {
       
       
       if (input$num == 1) {
@@ -48,14 +48,31 @@ server <- function(input, output, session) {
           }
         }
       }
+    } else if (input$num <= 1000000000000){
+      if ((input$num %% 2) == 0) {
+        xtext <- paste(input$num, "is an even number, silly....of course it's not prime.")
+      } else if (input$num == 8675309){
+        xtext <- paste(input$num, "is not only Jenny's number, but it's also the hypotenuse of a primitive Pythagorean triple...  Oh, and it is also prime.")
+      } else {
+        for(i in 3:(floor(input$num / 100000))) {
+          k <- i + j
+          if (k - input$num >= 0) {
+            break
+          }
+          if ((input$num %% k) == 0) {
+            xtext <- paste(input$num, "is not a prime number.  It is divisible by", k, ".")
+            break
+          } 
+          j <- j + 1
+        }
+      }
     } else {
-      xtext <- paste("Sorry, but I am not able to work with numbers that large at this time. Bokay?")
-    }
+        xtext <- paste("Sorry, but I am not able to work with numbers that large at this time. Bokay?")
+        }
     results <- xtext
     results
   })
   output$xtext <- renderText(results())
-  
 }
 
 shinyApp(ui = ui, server = server)
