@@ -1,0 +1,34 @@
+body {
+  font-family: "Lato";
+  background-color: #FFFFFF;
+    color: #00416B;
+}
+
+h1{
+  font-family: "Cousine";
+}
+
+h2{
+  font-family: "Cousine";
+}
+
+h3{
+  font-family: "Cousine";
+}
+
+.callout{
+  background-color: #00416B; 
+  color: white; 
+  font-size: 14px;
+  margin-top: 25px; 
+  margin-bottom: 25px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.story{
+  background-color: #E3EAEE; 
+  margin-top: 25px;
+  padding: 25px 25px 25px 25px;
+}
