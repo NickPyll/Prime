@@ -1,0 +1,12 @@
+name: Prime
+title: Prime
+username:
+account: nickpyll
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 285025
+bundleId: 5124252
+url: https://nickpyll.shinyapps.io/Prime/
+when: 1633886317.37413
+asMultiple: FALSE
+asStatic: FALSE
