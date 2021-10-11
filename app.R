@@ -20,33 +20,32 @@ library(shinythemes)
 ui <- fluidPage(
   theme = 'custom.css',
   
+  tags$style(type='text/css', '#xtext {white-space: pre-wrap;}'),
+  
   class = "page",
  
   # force vertical gap so content is beneath the navbar
   fluidRow(style = "height:50px"),
+  
   fluidRow(
     class = "db-intro",
     align = "center",
     HTML("<H1>PRIME FINDER</H1>")
     ),
   
-  fluidRow(
-    class = "story",
-    style = "margin-right:10px; margin-left:10px; display: flex; align-items: center; justify-content: center;",
-    column(12, style = "font-size: 16px;", align = "center", 'here are some words')
-  ),
-  
-  
   titlePanel("Is your favorite number prime?"),
   
-    fluidRow(
-      align = "center",
-      numericInput('num', 'What is your favorite number?', 1, 3, 1000)
-    ),
+  # fluidRow(
+  #   align = "center",
+  #   numericInput('num', 'What is your favorite number?', 1)
+  # ),
     
-    column(12,
-           verbatimTextOutput('xtext')
-    )
+  column(3,
+         numericInput('num', NULL, 1)),
+  
+  column(9,
+         verbatimTextOutput('xtext')
+  )
   
 )
 
@@ -59,11 +58,18 @@ server <- function(input, output, session) {
     
     #### less than 500k ----
     
-    if (input$num <= 500000) {
+    if (input$num < 0) {
+      xtext <- "No...negative numbers are not prime, by definition."
+    }
+    
+    else if (input$num == 0) {
+      xtext <- "Zero is a very interesting use case indeed...and there are lots of debates about whether it's prime, even, or even a number. But by almost all definitions, zero is not prime."
+    }
+    
+    else if (input$num <= 500000) {
       
       #### 1 ----
       if (input$num == 1) {
-        
         xtext <- paste(input$num, "is the loneliest number, but by definition it is not prime.")
       } 
       
@@ -77,6 +83,12 @@ server <- function(input, output, session) {
       
       else if (input$num == 42) {
         xtext <- 'yes....that is the answer to the Ultimate Question. Also...not prime.'
+      } 
+      
+      #### 69 ----
+      
+      else if (input$num == 69) {
+        xtext <- 'Sigh. No...not prime...divisible by 3.'
       } 
       
       #### even ----
